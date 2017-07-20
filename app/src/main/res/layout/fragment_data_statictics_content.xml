@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:paddingBottom="15dp"
+              android:paddingLeft="26dp"
+              android:paddingRight="26dp"
+              android:paddingTop="20dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="29dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/student_grade"
+            android:layout_width="100dp"
+            android:layout_height="29dp"
+            android:background="@drawable/bg_shape_select_grade"
+            android:drawableRight="@mipmap/arrow_bottom"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="一年级"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/student_class"
+            android:layout_width="80dp"
+            android:layout_height="29dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/bg_shape_select_grade"
+            android:drawableRight="@mipmap/arrow_bottom"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="二班"
+            android:textSize="16sp"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="2017"
+        android:textSize="16sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/list_month"/>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorLine"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="20dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <!--进度条-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <com.waterfairy.nfcdemo.widget.ProgressView
+                                android:id="@+id/progress_1"
+                                android:layout_width="15dp"
+                                android:layout_height="170dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center_horizontal"
+                                android:text="学业素养"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <com.waterfairy.nfcdemo.widget.ProgressView
+                                android:id="@+id/progress_2"
+                                android:layout_width="15dp"
+                                android:layout_height="170dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center_horizontal"
+                                android:text="艺体素养"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <com.waterfairy.nfcdemo.widget.ProgressView
+                                android:id="@+id/progress_3"
+                                android:layout_width="15dp"
+                                android:layout_height="170dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center_horizontal"
+                                android:text="品德素养"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <com.waterfairy.nfcdemo.widget.ProgressView
+                                android:id="@+id/progress_4"
+                                android:layout_width="15dp"
+                                android:layout_height="170dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center_horizontal"
+                                android:text="健康指数"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <!--星级-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="23dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="16dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:text="语文"/>
+
+                            <com.waterfairy.nfcdemo.widget.StartView
+                                android:layout_width="100dp"
+                                android:layout_height="14dp"
+                                app:canChange="false"
+                                app:starNum="1"/>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="16dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|right">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:text="数学"/>
+
+                            <com.waterfairy.nfcdemo.widget.StartView
+                                android:layout_width="100dp"
+                                android:layout_height="14dp"
+                                app:canChange="false"
+                                app:starNum="1"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="16dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:text="英语"/>
+
+                            <com.waterfairy.nfcdemo.widget.StartView
+                                android:layout_width="100dp"
+                                android:layout_height="14dp"
+                                app:canChange="false"
+                                app:starNum="1"/>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <!--button 详情-->
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/info"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:text="详情"
+                    android:textColor="@color/colorWhite"/>
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+</LinearLayout>

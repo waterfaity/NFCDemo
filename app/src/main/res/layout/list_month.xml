@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/month_1"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/bg_shape_month"
+        android:gravity="center"
+        android:text="1月"
+        android:textColor="@color/colorWhite"
+        android:textSize="14dp"/>
+
+    <TextView
+        android:id="@+id/month_2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="24dp"
+        android:background="@drawable/bg_shape_month"
+        android:gravity="center"
+        android:text="2月"
+        android:textColor="@color/colorWhite"
+        android:textSize="14dp"/>
+
+    <TextView
+        android:id="@+id/month_3"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="24dp"
+        android:background="@drawable/bg_shape_month"
+        android:gravity="center"
+        android:text="3月"
+        android:textColor="@color/colorWhite"
+        android:textSize="14dp"/>
+
+    <TextView
+        android:id="@+id/month_4"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="24dp"
+        android:background="@drawable/bg_shape_month"
+        android:gravity="center"
+        android:text="4月"
+        android:textColor="@color/colorWhite"
+        android:textSize="14dp"/>
+
+    <TextView
+        android:id="@+id/month_5"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="24dp"
+        android:background="@drawable/bg_shape_month"
+        android:gravity="center"
+        android:text="5月"
+        android:textColor="@color/colorWhite"
+        android:textSize="14dp"/>
+
+    <TextView
+        android:id="@+id/month_6"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="24dp"
+        android:background="@drawable/bg_shape_month"
+        android:gravity="center"
+        android:text="6月"
+        android:textColor="@color/colorWhite"
+        android:textSize="14dp"/>
+
+    <TextView
+        android:id="@+id/month_7"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="24dp"
+        android:background="@drawable/bg_shape_month"
+        android:gravity="center"
+        android:text="7月"
+        android:textColor="@color/colorWhite"
+        android:textSize="14dp"/>
+
+    <TextView
+        android:id="@+id/month_8"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="24dp"
+        android:background="@drawable/bg_shape_month"
+        android:gravity="center"
+        android:text="8月"
+        android:textColor="@color/colorWhite"
+        android:textSize="14dp"/>
+
+    <TextView
+        android:id="@+id/month_9"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="24dp"
+        android:background="@drawable/bg_shape_month"
+        android:gravity="center"
+        android:text="9月"
+        android:textColor="@color/colorWhite"
+        android:textSize="14dp"/>
+
+    <TextView
+        android:id="@+id/month_10"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="24dp"
+        android:background="@drawable/bg_shape_month"
+        android:gravity="center"
+        android:text="10月"
+        android:textColor="@color/colorWhite"
+        android:textSize="14dp"/>
+
+    <TextView
+        android:id="@+id/month_11"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="24dp"
+        android:background="@drawable/bg_shape_month"
+        android:gravity="center"
+        android:text="11月"
+        android:textColor="@color/colorWhite"
+        android:textSize="14dp"/>
+
+    <TextView
+        android:id="@+id/month_12"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="24dp"
+        android:background="@drawable/bg_shape_month"
+        android:gravity="center"
+        android:text="12月"
+        android:textColor="@color/colorWhite"
+        android:textSize="14dp"/>
+</LinearLayout>

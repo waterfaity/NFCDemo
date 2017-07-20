@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0b8f64"
+    android:fitsSystemWindows="true"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context="com.waterfairy.nfcdemo.activity.LoginActivity">
+
+    <LinearLayout
+        android:id="@+id/lin_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_account"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:background="@drawable/bg_shape_edit_name"
+            android:gravity="center_vertical"
+            android:hint="@string/hint_input_teacher_account"
+            android:maxLength="16"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:singleLine="true"
+            android:text="abc"
+            android:textColor="@color/color_text_edit_account"
+            android:textColorHint="@color/color_text_edit_account"
+            android:textSize="16sp"/>
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_shape_edit_name"
+            android:gravity="center_vertical"
+            android:hint="@string/hint_input_teacher_password"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:singleLine="true"
+            android:text="abc"
+            android:textColor="@color/color_text_edit_account"
+            android:textColorHint="@color/color_text_edit_account"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lin_login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:onClick="login"
+        android:text="登录"
+        android:textColor="@color/color_text_login"/>
+
+
+</RelativeLayout>
