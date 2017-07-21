@@ -25,6 +25,7 @@ public class ListDialog extends Dialog {
     public static final int TAG_GRADE = 1;
     public static final int TAG_CLASS = 2;
     public static final int TAG_EVA = 3;
+    public static final int TAG_SUBJECT = 4;
     private LinearLayout mRootView;
     private OnSpinnerSelectListener onSelectListener;
     private int tag;
@@ -49,7 +50,7 @@ public class ListDialog extends Dialog {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (view != null && view instanceof TextView) {
+                if (targetView != null && targetView instanceof TextView) {
                     ((TextView) targetView).setText(strings.get(position));
                 }
                 if (onSelectListener != null) onSelectListener.onSelect(targetView, tag, position);

@@ -9,8 +9,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.waterfairy.nfcdemo.R;
+import com.waterfairy.nfcdemo.bean.ClassInfoBean;
+import com.waterfairy.nfcdemo.bean.StudentBean;
 import com.waterfairy.nfcdemo.widget.FiveView;
+import com.waterfairy.transformation.BitmapCircleTransformation;
 
 import java.util.List;
 
@@ -21,9 +25,9 @@ import java.util.List;
 
 public class StudentAdapter extends BaseAdapter {
     private Context context;
-    private List<String> list;
+    private List<StudentBean> list;
 
-    public StudentAdapter(Context context, List<String> list) {
+    public StudentAdapter(Context context, List<StudentBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -36,7 +40,7 @@ public class StudentAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return list.get(position);
     }
 
     @Override
@@ -58,14 +62,26 @@ public class StudentAdapter extends BaseAdapter {
                 onItemClickListener.onItemClick(null, v, (int) v.getTag(), 0);
             }
         });
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                onItemClickListener.onItemClick(null, v, (int) v.getTag(), 0);
+                return true;
+            }
+        });
         ImageView imageView = (ImageView) convertView.findViewById(R.id.student_head_icon);
-        imageView.setImageResource(R.mipmap.ic_launcher);
+        StudentBean studentBean = list.get(position);
+        Glide.with(context).load(studentBean.getLogoUrl())
+                .transform(new BitmapCircleTransformation(context))
+                .error(R.mipmap.ic_launcher)
+                .into(imageView);
         TextView textView = (TextView) convertView.findViewById(R.id.student_name);
-        textView.setText(list.get(position));
+        textView.setText(studentBean.getUserName());
         return convertView;
     }
 
-    AdapterView.OnItemClickListener onItemClickListener;
+    private AdapterView.OnItemClickListener onItemClickListener;
+    private View.OnLongClickListener onLongClickListener;
 
     public void setOnItemClickListener(AdapterView.OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;

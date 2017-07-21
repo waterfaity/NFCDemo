@@ -29,6 +29,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -41,11 +42,10 @@
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="5dp"
-                    android:paddingBottom="5dp"
+                    android:paddingBottom="8dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-
-                    android:paddingTop="5dp"
+                    android:paddingTop="8dp"
                     android:src="@mipmap/ic_menu"/>
             </RelativeLayout>
 
@@ -80,9 +80,9 @@
 
                             <com.waterfairy.nfcdemo.widget.StartView
                                 android:id="@+id/star1"
-                                android:layout_width="match_parent"
+                                android:layout_width="150dp"
                                 android:layout_height="match_parent"
-                                app:canChange="true"
+                                app:canChange="false"
                                 app:starNum="3"/>
                         </LinearLayout>
 
@@ -102,9 +102,9 @@
                             <com.waterfairy.nfcdemo.widget.StartView
 
                                 android:id="@+id/star2"
-                                android:layout_width="match_parent"
+                                android:layout_width="150dp"
                                 android:layout_height="match_parent"
-                                app:canChange="true"
+                                app:canChange="false"
                                 app:starNum="4"/>
                         </LinearLayout>
 
@@ -124,9 +124,9 @@
                             <com.waterfairy.nfcdemo.widget.StartView
 
                                 android:id="@+id/star3"
-                                android:layout_width="match_parent"
+                                android:layout_width="150dp"
                                 android:layout_height="match_parent"
-                                app:canChange="true"
+                                app:canChange="false"
                                 app:starNum="2"/>
                         </LinearLayout>
 
@@ -147,9 +147,9 @@
                             <com.waterfairy.nfcdemo.widget.StartView
 
                                 android:id="@+id/star4"
-                                android:layout_width="match_parent"
+                                android:layout_width="150dp"
                                 android:layout_height="match_parent"
-                                app:canChange="true"
+                                app:canChange="false"
                                 app:starNum="1"/>
                         </LinearLayout>
                     </LinearLayout>

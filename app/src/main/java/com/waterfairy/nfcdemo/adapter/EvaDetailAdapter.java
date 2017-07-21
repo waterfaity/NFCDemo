@@ -5,10 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.waterfairy.nfcdemo.R;
 import com.waterfairy.nfcdemo.activity.EvaluationDetailActivity;
+import com.waterfairy.nfcdemo.database.EvaluationDB;
+import com.waterfairy.nfcdemo.dialog.ListDialog;
+import com.waterfairy.nfcdemo.widget.StartView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,14 +24,18 @@ import java.util.List;
 
 public class EvaDetailAdapter extends BaseAdapter {
     private Context context;
+    private List<EvaluationDB> list;
 
-    public EvaDetailAdapter(Context context) {
-        this.context=context;
+    public EvaDetailAdapter(Context context, List<EvaluationDB> evaluationDBs) {
+        this.context = context;
+        this.list = evaluationDBs;
+
     }
 
     @Override
     public int getCount() {
-        return 20;
+        if (list == null) return 0;
+        else return list.size();
     }
 
     @Override
@@ -43,6 +53,20 @@ public class EvaDetailAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_detail, parent, false);
         }
+        StartView startView1 = (StartView) convertView.findViewById(R.id.star1);
+        StartView startView2 = (StartView) convertView.findViewById(R.id.star2);
+        StartView startView3 = (StartView) convertView.findViewById(R.id.star3);
+        StartView startView4 = (StartView) convertView.findViewById(R.id.star4);
+        EvaluationDB evaluationDB = list.get(position);
+
+        startView1.setStar(evaluationDB.getListenScore());
+        startView2.setStar(evaluationDB.getReadAloudScore());
+        startView3.setStar(evaluationDB.getReadScore());
+        startView4.setStar(evaluationDB.getSpeakScore());
+
+        ((TextView) convertView.findViewById(R.id.result)).setText(evaluationDB.getResult());
+
+        ((TextView) convertView.findViewById(R.id.time)).setText("总评 (" + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(evaluationDB.getTime()))) + ")");
         return convertView;
     }
 }

@@ -6,10 +6,14 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.waterfairy.nfcdemo.bean.ClassInfoBean;
 import com.waterfairy.nfcdemo.bean.UserBean;
 import com.waterfairy.nfcdemo.database.DaoMaster;
 import com.waterfairy.nfcdemo.database.DaoSession;
+import com.waterfairy.nfcdemo.utils.ShareUtils;
 import com.waterfairy.tools.ToastUtils;
+
+import java.util.ArrayList;
 
 /**
  * Created by water_fairy on 2017/7/18.
@@ -22,6 +26,7 @@ public class MyApp extends Application {
     private DaoSession daoSession;
     private DaoMaster.DevOpenHelper devOpenHelper;
     private DaoMaster daoMaster;
+    private ArrayList<ClassInfoBean>  classInfo;
 
     @Override
     public void onCreate() {
@@ -72,10 +77,14 @@ public class MyApp extends Application {
     }
 
     public UserBean getUserInfo() {
-        return new UserBean();
+        return ShareUtils.getUserBean(getAppContext());
     }
 
-    public static UserBean getUserBean() {
-        return new UserBean();
+    public void setClassInfo(ArrayList<ClassInfoBean>  classInfo) {
+        this.classInfo = classInfo;
+    }
+
+    public ArrayList<ClassInfoBean> getClassInfo() {
+        return classInfo;
     }
 }

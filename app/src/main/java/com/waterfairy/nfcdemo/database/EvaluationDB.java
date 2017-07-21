@@ -24,69 +24,123 @@ public class EvaluationDB {
     public static final int TYPE_READ = 3;
     public static final int TYPE_SPEAK = 4;
 
-    @Id(autoincrement = true )
+    @Id(autoincrement = true)
     private Long id;
     private long teacherId;
     private long studentId;
-    private int score;
-    private int subject;
-    private int type;
+    private String subject;
     private long time;
-    @Generated(hash = 471752464)
-    public EvaluationDB(Long id, long teacherId, long studentId, int score,
-            int subject, int type, long time) {
+    private int listenScore;
+    private int readAloudScore;
+    private int readScore;
+    private int speakScore;
+
+    @Generated(hash = 878508233)
+    public EvaluationDB(Long id, long teacherId, long studentId, String subject,
+                        long time, int listenScore, int readAloudScore, int readScore,
+                        int speakScore) {
         this.id = id;
         this.teacherId = teacherId;
         this.studentId = studentId;
-        this.score = score;
         this.subject = subject;
-        this.type = type;
         this.time = time;
+        this.listenScore = listenScore;
+        this.readAloudScore = readAloudScore;
+        this.readScore = readScore;
+        this.speakScore = speakScore;
     }
+
     @Generated(hash = 2012657269)
     public EvaluationDB() {
     }
+
     public Long getId() {
         return this.id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public long getTeacherId() {
         return this.teacherId;
     }
+
     public void setTeacherId(long teacherId) {
         this.teacherId = teacherId;
     }
+
     public long getStudentId() {
         return this.studentId;
     }
+
     public void setStudentId(long studentId) {
         this.studentId = studentId;
     }
-    public int getScore() {
-        return this.score;
-    }
-    public void setScore(int score) {
-        this.score = score;
-    }
-    public int getSubject() {
+
+    public String getSubject() {
         return this.subject;
     }
-    public void setSubject(int subject) {
+
+    public void setSubject(String subject) {
         this.subject = subject;
     }
-    public int getType() {
-        return this.type;
-    }
-    public void setType(int type) {
-        this.type = type;
-    }
+
     public long getTime() {
         return this.time;
     }
+
     public void setTime(long time) {
         this.time = time;
     }
 
+    public int getListenScore() {
+        return this.listenScore;
+    }
+
+    public void setListenScore(int listenScore) {
+        this.listenScore = listenScore;
+    }
+
+    public int getReadAloudScore() {
+        return this.readAloudScore;
+    }
+
+    public void setReadAloudScore(int readAloudScore) {
+        this.readAloudScore = readAloudScore;
+    }
+
+    public int getReadScore() {
+        return this.readScore;
+    }
+
+    public void setReadScore(int readScore) {
+        this.readScore = readScore;
+    }
+
+    public int getSpeakScore() {
+        return this.speakScore;
+    }
+
+    public void setSpeakScore(int speakScore) {
+        this.speakScore = speakScore;
+    }
+
+
+    public String getResult() {
+        float radio = (listenScore + readScore + speakScore + readAloudScore) / 20f;
+//         100~90优90~80良80~70中70~60及格小于60不及格
+        if (radio < 0.5) {
+            return "差";
+        } else if (radio < .6) {
+            return "及格";
+        } else if (radio < .7) {
+            return "中";
+        } else if (radio < .8) {
+            return "良";
+        } else if (radio < 1) {
+            return "优";
+        }
+        return "优";
+    }
 }

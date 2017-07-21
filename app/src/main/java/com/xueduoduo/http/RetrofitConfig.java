@@ -6,8 +6,10 @@ package com.xueduoduo.http;
  */
 
 public class RetrofitConfig {
-//    http://192.168.1.107:8085/huiyuedu/login?account=student&password=c230415d9f455e93e080d23e7727a1a8
+    //    http://192.168.1.107:8085/huiyuedu/login?account=student&password=c230415d9f455e93e080d23e7727a1a8
     public final static String UserInfoModifyUrl = "https://m.xueduoduo.com/";
+    //    public final static String BaseUrl = "http://180.153.69.69:8087/huiyuedu2/";
+//    public final static String BaseUrl = "http://192.168.1.107:8085/huiyuedu/";
 //    public final static String BaseUrl = "http://180.153.69.69:8087/huiyuedu2/";
-    public final static String BaseUrl = "http://192.168.1.107:8085/huiyuedu/";
+    public final static String BaseUrl = "http://180.153.67.147:8093/medicine/";
 }

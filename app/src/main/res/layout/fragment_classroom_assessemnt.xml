@@ -23,15 +23,15 @@
 
             <TextView
                 android:id="@+id/student_grade"
-                android:layout_width="100dp"
+                android:layout_width="140dp"
                 android:layout_height="29dp"
                 android:background="@drawable/bg_shape_select_grade"
                 android:drawableRight="@mipmap/arrow_bottom"
                 android:gravity="center"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:text="一年级2班"
-                android:textSize="16sp"/>
+                android:singleLine="true"
+                android:text="**"/>
 
             <TextView
                 android:id="@+id/student_class"

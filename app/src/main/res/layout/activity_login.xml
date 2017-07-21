@@ -29,7 +29,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:singleLine="true"
-            android:text="abc"
+            android:text="student"
             android:textColor="@color/color_text_edit_account"
             android:textColorHint="@color/color_text_edit_account"
             android:textSize="16sp"/>
@@ -43,11 +43,10 @@
             android:gravity="center_vertical"
             android:hint="@string/hint_input_teacher_password"
             android:inputType="textPassword"
-            android:maxLength="16"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:singleLine="true"
-            android:text="abc"
+            android:text="c230415d9f455e93e080d23e7727a1a8"
             android:textColor="@color/color_text_edit_account"
             android:textColorHint="@color/color_text_edit_account"
             android:textSize="16sp"/>

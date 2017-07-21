@@ -3,8 +3,10 @@ package com.waterfairy.nfcdemo.model;
 import android.app.Activity;
 
 import com.waterfairy.nfcdemo.activity.LoginActivity;
+import com.waterfairy.nfcdemo.bean.UserBean;
 import com.waterfairy.nfcdemo.presenter.LoginPresenterListener;
 import com.waterfairy.nfcdemo.utils.ShareUtils;
+import com.waterfairy.tools.ToastUtils;
 import com.xueduoduo.http.BaseCallback;
 import com.xueduoduo.http.RetrofitRequest;
 import com.xueduoduo.http.RetrofitService;
@@ -29,20 +31,27 @@ public class LoginModel {
 
     }
 
-    public void requestLogin(String account, String password) {
-        ShareUtils.saveAccountAndPassword(mActivity, account, password);
-//        RetrofitService retrofitRequest = RetrofitRequest.getInstance().getNormalRetrofit();
-//        retrofitRequest.login(account, password).enqueue(new BaseCallback<BaseResponse>() {
-//            @Override
-//            public void onSuccess(BaseResponse baseResponse) {
-//
-//            }
-//
-//            @Override
-//            public void onFailed(int code, String message) {
-//
-//            }
-//        });
-        mPresenter.onLoginSuccess();
+    public void requestLogin(final String account, final String password) {
+
+        RetrofitService retrofitRequest = RetrofitRequest.getInstance().getNormalRetrofit();
+        retrofitRequest.login(account, password).enqueue(new BaseCallback<BaseResponse>() {
+            @Override
+            public void onSuccess(BaseResponse baseResponse) {
+                UserBean user = baseResponse.getUser();
+                if (user != null) {
+                    mPresenter.onLoginSuccess();
+                    ShareUtils.saveAccountAndPassword(mActivity, account, password);
+                    ShareUtils.saveUserBeanJson(mActivity, user);
+                } else {
+                    ShareUtils.removeUserBeanJson(mActivity);
+                }
+            }
+
+            @Override
+            public void onFailed(int code, String message) {
+                ToastUtils.show(message);
+            }
+        });
+
     }
 }

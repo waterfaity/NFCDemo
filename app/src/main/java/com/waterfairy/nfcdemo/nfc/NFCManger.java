@@ -55,7 +55,7 @@ public class NFCManger {
         if (nfcAdapter != null) {
             try {
                 nfcAdapter.enableForegroundDispatch(activity, pendingIntent, null, null); //启动
-                nfcAdapter.enableForegroundNdefPush(activity, new NdefMessage(new NdefRecord[]{}));
+//                nfcAdapter.enableForegroundNdefPush(activity, new NdefMessage(new NdefRecord[]{}));
             } catch (Exception e) {
                 e.printStackTrace();
             }

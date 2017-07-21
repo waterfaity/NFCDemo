@@ -24,17 +24,18 @@
                 <action android:name="android.nfc.action.TECH_DISCOVERED"/>
             </intent-filter>
 
-            <meta-data
-                android:name="android.nfc.action.TECH_DISCOVERED"
-                android:resource="@xml/filter_nfc"/>
+            <!--<meta-data-->
+                <!--android:name="android.nfc.action.TECH_DISCOVERED"-->
+                <!--android:resource="@xml/filter_nfc"/>-->
 
-            <intent-filter>
-                <action android:name="android.nfc.action.TAG_DISCOVERED"/>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.nfc.action.TAG_DISCOVERED"/>-->
 
-                <data android:mimeType="text/plain"/>
+                <!--<data android:mimeType="text/plain"/>-->
 
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
+                <!--&lt;!&ndash;<category android:name="android.intent.category.DEFAULT"&ndash;&gt;-->
+                    <!--/>-->
+            <!--</intent-filter>-->
         </activity>
         <activity
             android:name=".activity.LoginActivity"
@@ -49,7 +50,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity

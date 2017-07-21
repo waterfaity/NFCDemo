@@ -16,15 +16,15 @@
 
         <TextView
             android:id="@+id/student_grade"
-            android:layout_width="100dp"
+            android:layout_width="140dp"
             android:layout_height="29dp"
             android:background="@drawable/bg_shape_select_grade"
             android:drawableRight="@mipmap/arrow_bottom"
             android:gravity="center"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="一年级"
-            android:textSize="16sp"/>
+            android:singleLine="true"
+            android:text="**"/>
 
         <TextView
             android:id="@+id/student_class"
@@ -201,6 +201,7 @@
                                 android:text="语文"/>
 
                             <com.waterfairy.nfcdemo.widget.StartView
+                                android:id="@+id/star_chinese"
                                 android:layout_width="100dp"
                                 android:layout_height="14dp"
                                 app:canChange="false"
@@ -222,6 +223,7 @@
                                 android:text="数学"/>
 
                             <com.waterfairy.nfcdemo.widget.StartView
+                                android:id="@+id/star_math"
                                 android:layout_width="100dp"
                                 android:layout_height="14dp"
                                 app:canChange="false"
@@ -248,6 +250,8 @@
                                 android:text="英语"/>
 
                             <com.waterfairy.nfcdemo.widget.StartView
+
+                                android:id="@+id/star_english"
                                 android:layout_width="100dp"
                                 android:layout_height="14dp"
                                 app:canChange="false"
@@ -265,7 +269,7 @@
                 <!--button 详情-->
                 <android.support.v7.widget.AppCompatButton
                     android:id="@+id/info"
-                    android:layout_width="120dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
                     android:text="详情"

@@ -14,12 +14,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.waterfairy.nfcdemo.activity.EvaluationDetailActivity;
+import com.waterfairy.nfcdemo.bean.ClassInfoBean;
+import com.waterfairy.nfcdemo.bean.DisciplineCodeBean;
 import com.waterfairy.nfcdemo.bean.StudentBean;
+import com.waterfairy.nfcdemo.database.EvaluationDB;
 import com.waterfairy.nfcdemo.dialog.EvaluateDialog;
 import com.waterfairy.nfcdemo.dialog.ListDialog;
 import com.waterfairy.nfcdemo.R;
 import com.waterfairy.nfcdemo.adapter.StudentAdapter;
+import com.waterfairy.nfcdemo.dialog.NoteDialog;
+import com.waterfairy.nfcdemo.presenter.RequestPresenter;
+import com.waterfairy.nfcdemo.utils.DataTransUtils;
 import com.waterfairy.tools.ResSizeUtils;
+import com.waterfairy.tools.ToastUtils;
+import com.xueduoduo.application.MyApp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +45,7 @@ import static com.waterfairy.nfcdemo.dialog.ListDialog.TAG_GRADE;
  * 995637517@qq.com
  */
 
-public class ClassroomAssessmentFragment extends android.support.v4.app.Fragment implements ListDialog.OnSpinnerSelectListener, AdapterView.OnItemClickListener {
+public class ClassroomAssessmentFragment extends android.support.v4.app.Fragment implements ListDialog.OnSpinnerSelectListener, AdapterView.OnItemClickListener, EvaluateDialog.onEvaluateListener {
     private View mRootView;
     @BindView(R.id.grid_view)
     GridView mGV;
@@ -45,6 +53,13 @@ public class ClassroomAssessmentFragment extends android.support.v4.app.Fragment
     TextView mTVClass;
     @BindView(R.id.student_grade)
     TextView mTVGrade;
+    private RequestPresenter requestPresenter = new RequestPresenter();
+
+    private List<DisciplineCodeBean> disciplineCodeBeenList;
+
+    private StudentAdapter studentAdapter;
+    private StudentBean clickStudent;
+    private ClassInfoBean classInfoBean;
 
 
     @Nullable
@@ -58,52 +73,112 @@ public class ClassroomAssessmentFragment extends android.support.v4.app.Fragment
     }
 
     private void initView() {
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
-            list.add("fda" + i);
-        }
-        StudentAdapter studentAdapter = new StudentAdapter(getActivity(), list);
-        mGV.setAdapter(studentAdapter);
-        studentAdapter.setOnItemClickListener(this);
+
+
     }
 
     private void initData() {
+        new RequestPresenter().requestClassInfo(new RequestPresenter.OnRequestListener() {
+            @Override
+            public void onSuccess(Object object) {
+                ArrayList<ClassInfoBean> classInfoBeen = (ArrayList<ClassInfoBean>) object;
+                if (classInfoBeen != null && classInfoBeen.size() > 0) {
+                    mTVGrade.setText(classInfoBeen.get(0).getClassName());
+                    classInfoBean = classInfoBeen.get(0);
+                    requestStudent(classInfoBean.getClassId());
+                } else {
+                    ToastUtils.show("没有班级");
+                }
+            }
 
+            @Override
+            public void onError(String message) {
+                ToastUtils.show(message);
+            }
+        });
+    }
+
+    private void requestStudent(long classId) {
+        requestPresenter.requestClassStudent(classId, new RequestPresenter.OnRequestListener() {
+
+            @Override
+            public void onSuccess(Object object) {
+                List<StudentBean> list = (List<StudentBean>) object;
+                studentAdapter = new StudentAdapter(getActivity(), list);
+                mGV.setAdapter(studentAdapter);
+                studentAdapter.setOnItemClickListener(ClassroomAssessmentFragment.this);
+            }
+
+            @Override
+            public void onError(String message) {
+                mGV.setAdapter(studentAdapter = new StudentAdapter(getActivity(), null));
+            }
+        });
+
+        requestPresenter.requestTeacherDiscipline(classId, new RequestPresenter.OnRequestListener() {
+
+            @Override
+            public void onSuccess(Object object) {
+                disciplineCodeBeenList = (List<DisciplineCodeBean>) object;
+            }
+
+            @Override
+            public void onError(String message) {
+                disciplineCodeBeenList = null;
+            }
+        });
     }
 
     @OnClick({R.id.student_grade, R.id.student_class})
-    public void onGradClick(View view) {
-        if (view.getId() == R.id.student_grade) {
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i < 6; i++) {
-                list.add((i + 1) + "年级");
-            }
-            int[] gradeCoordinate = getGradeCoordinate(mTVGrade);
-            ListDialog listDialog = new ListDialog(getActivity(), mTVGrade, TAG_GRADE, gradeCoordinate[0], gradeCoordinate[1], gradeCoordinate[2], list, this);
-            listDialog.show();
+    public void onGradeClick(View view) {
+        ArrayList<ClassInfoBean> classInfo = MyApp.getInstance().getClassInfo();
+        if (classInfo == null) {
+            new RequestPresenter().requestClassInfo(new RequestPresenter.OnRequestListener() {
+                @Override
+                public void onSuccess(Object object) {
+                    showClassList((List<ClassInfoBean>) object);
+                }
+
+                @Override
+                public void onError(String message) {
+                    ToastUtils.show(message);
+                }
+            });
         } else {
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i < 6; i++) {
-                list.add((i + 1) + "班");
-            }
-            int[] gradeCoordinate = getGradeCoordinate(mTVClass);
-            ListDialog listDialog = new ListDialog(getActivity(), mTVClass, TAG_CLASS, gradeCoordinate[0], gradeCoordinate[1], gradeCoordinate[2], list, this);
-            listDialog.show();
+            showClassList(classInfo);
         }
+    }
+
+    public void showClassList(List<ClassInfoBean> list) {
+        int[] gradeCoordinate = getGradeCoordinate(mTVGrade);
+        List<String> listStr = DataTransUtils.transClassInfoToString(list);
+        ListDialog listDialog = new ListDialog(getActivity(), mTVGrade, ListDialog.TAG_GRADE, gradeCoordinate[0], gradeCoordinate[1], gradeCoordinate[2], listStr, ClassroomAssessmentFragment.this);
+        listDialog.show();
     }
 
     @Override
     public void onSelect(View textView, int tag, int pos) {
         if (tag == TAG_EVA) {
             if (pos == 0) {
-                new EvaluateDialog(getActivity(), new StudentBean()).show();
+                if (clickStudent != null && !EvaluateDialog.isShow) {
+
+                    new EvaluateDialog(getActivity(), clickStudent, disciplineCodeBeenList).setOnEvaluateListener(this).show();
+                    EvaluateDialog.isShow = true;
+                }
             } else {
-                startActivity(new Intent(getActivity(), EvaluationDetailActivity.class));
+                if (clickStudent != null) {
+                    Intent intent = new Intent(getActivity(), EvaluationDetailActivity.class);
+                    clickStudent.setClassName(classInfoBean.getClassName());
+                    intent.putExtra("studentBean", clickStudent);
+                    startActivity(intent);
+                }
             }
         } else if (tag == TAG_GRADE) {
-
-        } else if (tag == TAG_CLASS) {
-
+            ArrayList<ClassInfoBean> classInfo = MyApp.getInstance().getClassInfo();
+            if (classInfo != null && classInfo.size() > 0) {
+                classInfoBean = classInfo.get(pos);
+                requestStudent(classInfoBean.getClassId());
+            }
         }
     }
 
@@ -120,6 +195,8 @@ public class ClassroomAssessmentFragment extends android.support.v4.app.Fragment
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        clickStudent = (StudentBean) studentAdapter.getItem(position);
+        clickStudent.setClassName(classInfoBean.getClassName());
         List<String> list = new ArrayList<>();
         list.add("去评价");
         list.add("评价详情");
@@ -141,5 +218,11 @@ public class ClassroomAssessmentFragment extends android.support.v4.app.Fragment
         ListDialog listDialog = new ListDialog(getActivity(), view, TAG_EVA, left, top, gradeCoordinate[2] * 3 / 4, list, this);
         listDialog.show();
         view.getTop();
+    }
+
+    @Override
+    public void onEvaluate(EvaluationDB evaluationDB) {
+//        new NoteDialog(getActivity(), "评价成功").show();
+        ToastUtils.show("评价成功");
     }
 }

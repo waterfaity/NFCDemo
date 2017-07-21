@@ -1,6 +1,8 @@
 package com.xueduoduo.http.response;
 
 
+import com.waterfairy.nfcdemo.bean.UserBean;
+
 import java.util.ArrayList;
 
 /**
@@ -10,20 +12,40 @@ import java.util.ArrayList;
 
 public class BaseResponse<T> {
     private String resultCode;
-//    private UserModule record;
+    //    private UserModule record;
     private String message;
     private ArrayList<T> list;
     private ArrayList<T> studentInfos;
+    private ArrayList<T> classList;
     private int pageSize;
     private int totalPage;
     private int totalRow;
     private int pageNumber;
     private String filePath;
     private String fileName;
+    private String userType;
+    private UserBean user;
+    private T record;
 
-//    public UserModule getRecord() {
+    public T getRecord() {
+        return record;
+    }
+    //    public UserModule getRecord() {
 //        return record;
 //    }
+
+
+    public ArrayList<T> getClassList() {
+        return classList;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public UserBean getUser() {
+        return user;
+    }
 
     public String getFilePath() {
         return filePath;

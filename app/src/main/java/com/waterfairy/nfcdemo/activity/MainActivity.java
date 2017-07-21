@@ -3,12 +3,9 @@ package com.waterfairy.nfcdemo.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,12 +13,13 @@ import android.widget.TextView;
 
 import com.waterfairy.nfcdemo.R;
 import com.waterfairy.nfcdemo.adapter.MainAdapter;
+import com.waterfairy.nfcdemo.bean.UserBean;
 import com.waterfairy.nfcdemo.fragment.DataStatisticsFragment;
 import com.waterfairy.nfcdemo.nfc.NFCBean;
 import com.waterfairy.nfcdemo.nfc.NFCManger;
 import com.waterfairy.nfcdemo.presenter.MainPresenter;
 import com.waterfairy.nfcdemo.view.MainView;
-import com.waterfairy.nfcdemo.widget.ProgressView;
+import com.xueduoduo.application.MyApp;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -128,8 +126,20 @@ public class MainActivity extends AppCompatActivity implements MainView, NFCMang
         nfcManger.onReceive(intent);
     }
 
+
     @Override
     public void onReadNFCInfo(NFCBean nfcBean) {
+        if (mPresenter == null) {
+            initNfc();
+            mPresenter = new MainPresenter(this);
+        }
+        UserBean userInfo = MyApp.getInstance().getUserInfo();
+        if (userInfo.isLogin) {
+            mPresenter.getStudentInfoFromNfcCode(nfcBean);
+        } else {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        }
     }
 
     @Override
