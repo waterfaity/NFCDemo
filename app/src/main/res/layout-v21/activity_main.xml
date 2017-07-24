@@ -24,6 +24,17 @@
             android:textSize="18sp"/>
 
         <ImageView
+            android:id="@+id/search"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/user_icon"
+            android:background="@drawable/ripple"
+            android:padding="4dp"
+            android:src="@mipmap/search"/>
+
+        <ImageView
             android:id="@+id/user_icon"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -31,7 +42,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/ripple"
             android:padding="4dp"
-            android:src="@android:drawable/ic_dialog_info"/>
+            android:src="@mipmap/ic_user_head"/>
     </RelativeLayout>
 
     <LinearLayout

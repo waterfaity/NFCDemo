@@ -23,7 +23,7 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/ic_user_head_default"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

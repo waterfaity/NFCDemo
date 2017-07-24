@@ -8,9 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.waterfairy.nfcdemo.R;
-import com.waterfairy.nfcdemo.activity.EvaluationDetailActivity;
 import com.waterfairy.nfcdemo.database.EvaluationDB;
-import com.waterfairy.nfcdemo.dialog.ListDialog;
 import com.waterfairy.nfcdemo.widget.StartView;
 
 import java.text.SimpleDateFormat;
@@ -29,7 +27,6 @@ public class EvaDetailAdapter extends BaseAdapter {
     public EvaDetailAdapter(Context context, List<EvaluationDB> evaluationDBs) {
         this.context = context;
         this.list = evaluationDBs;
-
     }
 
     @Override

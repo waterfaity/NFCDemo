@@ -73,7 +73,7 @@ public class StudentAdapter extends BaseAdapter {
         StudentBean studentBean = list.get(position);
         Glide.with(context).load(studentBean.getLogoUrl())
                 .transform(new BitmapCircleTransformation(context))
-                .error(R.mipmap.ic_launcher)
+                .error(R.mipmap.ic_user_head_default)
                 .into(imageView);
         TextView textView = (TextView) convertView.findViewById(R.id.student_name);
         textView.setText(studentBean.getUserName());

@@ -67,9 +67,8 @@ public class MainActivity extends AppCompatActivity implements MainView, NFCMang
     }
 
     private void initData() {
-        initNfc();
         mPresenter = new MainPresenter(this);
-
+        initNfc();
     }
 
     private void initNfc() {
@@ -130,8 +129,8 @@ public class MainActivity extends AppCompatActivity implements MainView, NFCMang
     @Override
     public void onReadNFCInfo(NFCBean nfcBean) {
         if (mPresenter == null) {
-            initNfc();
             mPresenter = new MainPresenter(this);
+            initNfc();
         }
         UserBean userInfo = MyApp.getInstance().getUserInfo();
         if (userInfo.isLogin) {
@@ -162,7 +161,6 @@ public class MainActivity extends AppCompatActivity implements MainView, NFCMang
             mCheck2.setBackgroundColor(Color.YELLOW);
             mCheck1.setBackgroundColor(Color.TRANSPARENT);
         }
-
     }
 
     @Override

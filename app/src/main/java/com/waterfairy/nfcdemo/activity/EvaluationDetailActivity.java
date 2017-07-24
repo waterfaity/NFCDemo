@@ -61,7 +61,7 @@ public class EvaluationDetailActivity extends AppCompatActivity implements Detai
         mName.setText(studentBean.getUserName());
         mClass.setText(studentBean.getClassName());
         Glide.with(this).load(studentBean.getLogoUrl()).
-                transform(new BitmapCircleTransformation(this)).error(R.mipmap.ic_launcher).into(mUserIcon);
+                transform(new BitmapCircleTransformation(this)).error(R.mipmap.ic_user_head_default).into(mUserIcon);
         mLV.setOnScrollListener(this);
     }
 

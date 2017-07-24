@@ -69,7 +69,7 @@ public class EvaluateDialog extends Dialog implements View.OnClickListener, List
         mName.setText(studentBean.getUserName());
         mClass.setText(studentBean.getClassName());
         Glide.with(context).load(studentBean.getLogoUrl()).transform(new BitmapCircleTransformation(context))
-                .error(R.mipmap.ic_launcher).into(mHead);
+                .error(R.mipmap.ic_user_head_default).into(mHead);
     }
 
     private void initView() {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NFC评估Demo</string>
+    <string name="app_name">奉教院附小</string>
     <string name="hint_input_teacher_account">输入教师账号</string>
     <string name="hint_input_teacher_password">输入密码</string>
     <string name="eva_detail">评价详情</string>

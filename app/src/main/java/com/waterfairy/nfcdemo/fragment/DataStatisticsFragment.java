@@ -165,7 +165,7 @@ public class DataStatisticsFragment extends android.support.v4.app.Fragment impl
     @Override
     public void onSelect(View view, int tag, int pos) {
         if (tag == ListDialog.TAG_GRADE) {
-            requestMonthData(0);
+            mMonths.get(0).performClick();
         }
     }
 

@@ -45,7 +45,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="5dp"
-                    android:src="@android:drawable/ic_delete"/>
+                    android:src="@mipmap/close"/>
             </RelativeLayout>
 
             <TextView
