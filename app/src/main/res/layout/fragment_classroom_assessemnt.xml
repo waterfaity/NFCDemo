@@ -25,6 +25,7 @@
                 android:id="@+id/student_grade"
                 android:layout_width="140dp"
                 android:layout_height="29dp"
+                android:textSize="15dp"
                 android:background="@drawable/bg_shape_select_grade"
                 android:drawableRight="@mipmap/arrow_bottom"
                 android:gravity="center"

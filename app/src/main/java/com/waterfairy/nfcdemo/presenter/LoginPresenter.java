@@ -7,9 +7,11 @@ import android.text.TextUtils;
 
 import com.waterfairy.nfcdemo.activity.LoginActivity;
 import com.waterfairy.nfcdemo.activity.MainActivity;
+import com.waterfairy.nfcdemo.bean.UserBean;
 import com.waterfairy.nfcdemo.model.LoginModel;
 import com.waterfairy.nfcdemo.view.LoginView;
 import com.waterfairy.tools.ToastUtils;
+import com.xueduoduo.application.MyApp;
 
 /**
  * Created by water_fairy on 2017/7/18.
@@ -44,5 +46,12 @@ public class LoginPresenter implements LoginPresenterListener {
     public void onLoginSuccess() {
         mActivity.startActivity(new Intent(mActivity, MainActivity.class));
         mActivity.finish();
+    }
+
+    public void checkLoginState() {
+        UserBean userInfo = MyApp.getInstance().getUserInfo();
+        if (userInfo != null && userInfo.isLogin) {
+            onLoginSuccess();
+        }
     }
 }

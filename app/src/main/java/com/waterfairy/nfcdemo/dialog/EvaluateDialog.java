@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
-import android.text.style.TtsSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,6 @@ import com.bumptech.glide.Glide;
 import com.waterfairy.nfcdemo.R;
 import com.waterfairy.nfcdemo.bean.DisciplineCodeBean;
 import com.waterfairy.nfcdemo.bean.StudentBean;
-import com.waterfairy.nfcdemo.bean.UserBean;
 import com.waterfairy.nfcdemo.database.EvaluationDB;
 import com.waterfairy.nfcdemo.utils.DataTransUtils;
 import com.waterfairy.nfcdemo.widget.StartView;
@@ -24,8 +22,6 @@ import com.waterfairy.tools.ResSizeUtils;
 import com.waterfairy.transformation.BitmapCircleTransformation;
 import com.xueduoduo.application.MyApp;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -58,18 +54,29 @@ public class EvaluateDialog extends Dialog implements View.OnClickListener, List
         mRootView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.dialog_evaluate, null);
         addContentView(mRootView, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         initView();
-        initData();
+        initData(context, studentBean, disciplineCodeBeenList);
     }
 
-    private void initData() {
+    public void initData(Context context, StudentBean studentBean, List<DisciplineCodeBean> disciplineCodeBean) {
+        this.context = context;
+        this.studentBean = studentBean;
+        startView1.setStar(0);
+        startView2.setStar(0);
+        startView3.setStar(0);
+        startView4.setStar(0);
         if (disciplineCodeBean != null && disciplineCodeBean.size() > 0) {
             mSubject.setText(disciplineCodeBean.get(0).getDisciplineName());
             currentDiscipline = disciplineCodeBean.get(0);
         }
-        mName.setText(studentBean.getUserName());
-        mClass.setText(studentBean.getClassName());
-        Glide.with(context).load(studentBean.getLogoUrl()).transform(new BitmapCircleTransformation(context))
-                .error(R.mipmap.ic_user_head_default).into(mHead);
+        mName.setText(this.studentBean.getUserName());
+        mClass.setText(this.studentBean.getClassName());
+        try {
+            Glide.with(this.context).load(this.studentBean.getLogoUrl()).transform(new BitmapCircleTransformation(this.context))
+                    .error(R.mipmap.ic_user_head_default).into(mHead);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void initView() {

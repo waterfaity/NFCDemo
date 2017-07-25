@@ -18,6 +18,7 @@ import com.waterfairy.nfcdemo.fragment.DataStatisticsFragment;
 import com.waterfairy.nfcdemo.nfc.NFCBean;
 import com.waterfairy.nfcdemo.nfc.NFCManger;
 import com.waterfairy.nfcdemo.presenter.MainPresenter;
+import com.waterfairy.nfcdemo.utils.ShareUtils;
 import com.waterfairy.nfcdemo.view.MainView;
 import com.xueduoduo.application.MyApp;
 
@@ -74,8 +75,7 @@ public class MainActivity extends AppCompatActivity implements MainView, NFCMang
     private void initNfc() {
         nfcManger = NFCManger.getInstance();
         nfcManger.init(this, MainActivity.class);
-        nfcManger.setOnNFCReadListener(this);
-        nfcManger.onReceive(getIntent());
+        nfcManger.onReceive(getIntent(), this);
     }
 
     @OnClick({R.id.user_icon, R.id.text_evaluate, R.id.text_data})
@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements MainView, NFCMang
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        ShareUtils.removeUserBeanJson(this);
         startActivity(new Intent(this, LoginActivity.class));
         finish();
         return super.onContextItemSelected(item);
@@ -110,19 +111,19 @@ public class MainActivity extends AppCompatActivity implements MainView, NFCMang
     @Override
     protected void onResume() {
         super.onResume();
-        nfcManger.onResume();
+        nfcManger.onResume(this, this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        nfcManger.onPause();
+        nfcManger.onPause(this);
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        nfcManger.onReceive(intent);
+        nfcManger.onReceive(intent, this);
     }
 
 
@@ -144,7 +145,6 @@ public class MainActivity extends AppCompatActivity implements MainView, NFCMang
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        nfcManger.onDestroy();
     }
 
     @Override

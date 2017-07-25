@@ -14,6 +14,7 @@ import android.nfc.tech.MifareUltralight;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NfcA;
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -25,6 +26,8 @@ import java.nio.ByteBuffer;
  */
 
 public class NFCManger {
+
+    private final String TAG = "NFCManger";
 
 
     private NfcAdapter nfcAdapter;
@@ -45,13 +48,17 @@ public class NFCManger {
     }
 
     public void init(Activity activity, Class aClass) {
+        Log.i(TAG, "init: ");
         this.activity = activity;
         nfcAdapter = NfcAdapter.getDefaultAdapter(activity);
-        pendingIntent = PendingIntent.getActivity(activity, 0, new Intent(activity, aClass)
+        pendingIntent = PendingIntent.getActivity(activity, 0, new Intent(this.activity, aClass)
                 .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
     }
 
-    public void onResume() {
+    public void onResume(Activity activity, OnNFCReadListener onNFCReadListener) {
+        this.onNFCReadListener = onNFCReadListener;
+        this.activity = activity;
+        Log.i(TAG, "onResume: ");
         if (nfcAdapter != null) {
             try {
                 nfcAdapter.enableForegroundDispatch(activity, pendingIntent, null, null); //启动
@@ -63,19 +70,22 @@ public class NFCManger {
     }
 
 
-    public void onPause() {
+    public void onPause(Activity activity) {
+        this.activity = activity;
+        onNFCReadListener = null;
+        Log.i(TAG, "onPause: ");
         if (nfcAdapter != null) {
             try {
                 nfcAdapter.disableForegroundDispatch(activity);
-                nfcAdapter.disableForegroundNdefPush(activity);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
     }
 
-    public void onReceive(Intent intent) {
+    public void onReceive(Intent intent, OnNFCReadListener onNFCReadListener) {
+        this.onNFCReadListener = onNFCReadListener;
+        Log.i(TAG, "onReceive: ");
         if (intent == null) return;
         String action = intent.getAction();
         if (TextUtils.isEmpty(action)) return;
@@ -215,6 +225,7 @@ public class NFCManger {
     }
 
     public void onDestroy() {
+        Log.i(TAG, "onDestroy: ");
         activity = null;
         nfcAdapter = null;
         NFC_MANGER = null;

@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     private void initData() {
         mPresenter = new LoginPresenter(this);
+        mPresenter.checkLoginState();
     }
 
     public void login(View view) {

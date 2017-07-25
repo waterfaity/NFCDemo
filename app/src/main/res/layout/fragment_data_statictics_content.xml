@@ -15,6 +15,7 @@
         android:layout_marginBottom="10dp">
 
         <TextView
+            android:textSize="15dp"
             android:id="@+id/student_grade"
             android:layout_width="140dp"
             android:layout_height="29dp"

@@ -215,7 +215,7 @@ public class ClassroomAssessmentFragment extends android.support.v4.app.Fragment
             left -= halfWidth;
             left += gradeCoordinate[2] / 4;
         }
-        ListDialog listDialog = new ListDialog(getActivity(), view, TAG_EVA, left, top, gradeCoordinate[2] * 3 / 4, list, this);
+        ListDialog listDialog = new ListDialog(getActivity(), view, TAG_EVA, left, top, gradeCoordinate[2] * 5 / 6, list, this);
         listDialog.show();
         view.getTop();
     }

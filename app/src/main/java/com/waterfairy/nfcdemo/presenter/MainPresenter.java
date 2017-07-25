@@ -7,7 +7,6 @@ import com.waterfairy.nfcdemo.bean.DisciplineCodeBean;
 import com.waterfairy.nfcdemo.bean.StudentBean;
 import com.waterfairy.nfcdemo.database.EvaluationDB;
 import com.waterfairy.nfcdemo.dialog.EvaluateDialog;
-import com.waterfairy.nfcdemo.dialog.NoteDialog;
 import com.waterfairy.nfcdemo.model.MainModel;
 import com.waterfairy.nfcdemo.nfc.NFCBean;
 import com.waterfairy.nfcdemo.view.MainView;
@@ -21,7 +20,7 @@ import java.util.List;
  */
 
 public class MainPresenter implements MainPresenterListener {
-
+    private EvaluateDialog dialog;
     private Activity mActivity;
     private MainModel mModel;
     private MainView mView;
@@ -38,14 +37,18 @@ public class MainPresenter implements MainPresenterListener {
 
     @Override
     public void onGetStudentInfo(StudentBean studentBean, List<DisciplineCodeBean> disciplineCodeBeen) {
-        if (EvaluateDialog.isShow) return;
-        new EvaluateDialog(mActivity, studentBean, disciplineCodeBeen).setOnEvaluateListener(new EvaluateDialog.onEvaluateListener() {
+//        if (EvaluateDialog.isShow) return;
+        if (dialog != null) dialog.dismiss();
+        dialog = new EvaluateDialog(mActivity, studentBean, disciplineCodeBeen).setOnEvaluateListener(new EvaluateDialog.onEvaluateListener() {
             @Override
             public void onEvaluate(EvaluationDB evaluationDB) {
 //                new NoteDialog(mActivity, "评价成功").show();
                 ToastUtils.show("评价成功");
             }
-        }).show();
+        });
+//        dialog.initData(mActivity, studentBean, disciplineCodeBeen);
+
+        dialog.show();
         EvaluateDialog.isShow = true;
     }
 }
